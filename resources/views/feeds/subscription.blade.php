@@ -42,7 +42,7 @@
 			</a>
 		</article>
 		@endforeach
-		<a href="#" id="load-articles" data-id="15"><div class="more-articles-btn">Load more</div></a>
+		<a href="#" id="load-articles" class="more-articles-link" data-id="15"><div class="more-articles-btn">Load more</div></a>
 	</div>
 </section>
 @endsection

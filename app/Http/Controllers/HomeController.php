@@ -14,7 +14,7 @@ class HomeController extends Controller
       if(!Auth::check()) {
         return redirect('/login');
       }
-      $feed = new UserFeed(Auth::id());
+      //$feed = new UserFeed(Auth::id());
       $myfeed = Article::join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')->
       select('articles.id', 'articles.datetime', 'articles.title', 'articles.url', 'articles.body', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')->
       where('subscriptions.user_id', '=', Auth::id())->
@@ -69,7 +69,7 @@ class HomeController extends Controller
                       </article>';
         }
 
-        $output .= '<a href="#" id="load-articles" data-id="' . $id . '"><div class="more-articles-btn">Load more</div></a>';
+        $output .= '<div class="more-articles-btn"><a href="#" id="load-articles" class="more-articles-link" data-id="' . $id . '">Load more</a></div>';
 
         echo $output;
       }

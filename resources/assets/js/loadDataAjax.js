@@ -20,6 +20,7 @@ $(document).ready(function() {
                 success: function(data) {
                     if(data != "") {
                         $('#load-articles').remove();
+                        $('.more-articles-btn').remove();
                         $('.my-feed-box .box-content').append(data);
                     } else {
                         $('#load-articles').html("No data");
@@ -44,13 +45,14 @@ $(document).ready(function() {
 
         $("#load-articles").html("Loading...");
         $.ajax({
-            url: url,
+            url: urlDoc,
             method: "POST",
-            data: data,
+            data: dataDoc,
             dataType: "text",
             success: function(data) {
                 if(data != "") {
                     $('#load-articles').remove();
+                    $('.more-articles-btn').remove();
                     $('.my-feed-box .box-content').append(data);
                 } else {
                     $('#load-articles').html("No data");

@@ -76,7 +76,7 @@ class SubscriptionController extends Controller
                       </article>';
         }
 
-        $output .= '<a href="#" id="load-articles" data-id="' . $id . '"><div class="more-articles-btn">Load more</div></a>';
+        $output .= '<div class="more-articles-btn"><a href="#" id="load-articles" class="more-articles-link" data-id="' . $id . '">Load more</a></div>';
 
         echo $output;
       }
