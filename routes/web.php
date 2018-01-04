@@ -20,7 +20,6 @@ Route::get('/login', 'LoginController@index');
 Route::get('/logout', 'LoginController@logout');
 Route::post('/login', 'LoginController@authenticate');
 Route::post('/register', 'LoginController@register');
-Route::post('/browse/load', 'HomeController@loadDataAjax');
+Route::post('/browse/load', 'LoadDataAjaxController@index');
 Route::get('/browse/subscription/{id}', 'SubscriptionController@browse');
-Route::post('/browse/load-subscription', 'SubscriptionController@loadDataAjax');
 Route::get('/search', 'SearchController@query');

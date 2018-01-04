@@ -31718,10 +31718,10 @@ $(document).ready(function () {
         var urlDoc = window.location.href.split('/');
         var idDoc = $('#load-articles').data('id');
         if (window.location.href.indexOf("subscription") > -1) {
-            var dataDoc = { id: idDoc, _token: window.axios.defaults.headers.common['X-CSRF-TOKEN'], subscription_id: urlDoc[5] };
-            urlDoc = '/browse/load-subscription';
+            var dataDoc = { id: idDoc, _token: window.axios.defaults.headers.common['X-CSRF-TOKEN'], feed: 'subscription', subscription_id: urlDoc[5] };
+            urlDoc = '/browse/load';
         } else {
-            var dataDoc = { id: idDoc, _token: window.axios.defaults.headers.common['X-CSRF-TOKEN'] };
+            var dataDoc = { id: idDoc, _token: window.axios.defaults.headers.common['X-CSRF-TOKEN'], feed: 'homepage' };
             urlDoc = '/browse/load';
         }
 
@@ -31751,10 +31751,10 @@ $(document).ready(function () {
         var urlDoc = window.location.href.split('/');
         var idDoc = $('#load-articles').data('id');
         if (window.location.href.indexOf("subscription") > -1) {
-            var dataDoc = { id: idDoc, _token: window.axios.defaults.headers.common['X-CSRF-TOKEN'], subscription_id: urlDoc[5] };
-            urlDoc = '/browse/load-subscription';
+            var dataDoc = { id: idDoc, _token: window.axios.defaults.headers.common['X-CSRF-TOKEN'], feed: 'subscription', subscription_id: urlDoc[5] };
+            urlDoc = '/browse/load';
         } else {
-            var dataDoc = { id: idDoc, _token: window.axios.defaults.headers.common['X-CSRF-TOKEN'] };
+            var dataDoc = { id: idDoc, _token: window.axios.defaults.headers.common['X-CSRF-TOKEN'], feed: 'homepage' };
             urlDoc = '/browse/load';
         }
 
