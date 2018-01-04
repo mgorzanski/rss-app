@@ -1,0 +1,208 @@
+@import url(https://fonts.googleapis.com/css?family=Lobster);@import url(https://fonts.googleapis.com/css?family=Anton);@import url(https://fonts.googleapis.com/css?family=Oxygen);/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  background: #d2ff52;
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #d2ff52), color-stop(100%, #d92e2e));
+  background: -webkit-gradient(linear, left top, left bottom, from(#d2ff52), to(#d92e2e));
+  background: linear-gradient(to bottom, #d2ff52 0%, #d92e2e 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#d92e2e', GradientType=0 );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.header-title {
+  font-family: 'Lobster', cursive;
+  font-size: 4em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 35px 0 35px 0;
+}
+
+.section-title {
+  font-size: 2.4em;
+  font-family: "Anton", sans-serif;
+  text-transform: uppercase;
+  color: #161616;
+  margin-bottom: 25px;
+}
+
+.main {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto auto;
+  padding: 70px 100px;
+}
+
+.login {
+  grid-column: 1 / 2;
+}
+
+.register {
+  grid-column: 2 / 3;
+}
+
+label {
+  display: block;
+  margin: 10px 0 10px 0;
+  font-size: 1.4em;
+  font-family: "Oxygen", sans-serif;
+}
+
+input {
+  padding: 0.6em;
+  border: 0;
+  background-color: #2E2E2E;
+  color: #fff;
+  width: 400px;
+}
+
+input:focus {
+  outline: none;
+  background-color: #2E2E2E;
+  color: #fff;
+}
+
+button {
+  display: block;
+  margin-top: 10px;
+  border: 0;
+  padding: 10px;
+  background-color: #2E2E2E;
+  color: #fff;
+}
+
