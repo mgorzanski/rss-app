@@ -23,6 +23,6 @@
 
 @section('scripts')
 
-<script src="/js/Article.js"></script>
+<script src="{{ asset('js/Article.js') }}"></script>
 
 @endsection
