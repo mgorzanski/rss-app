@@ -12,29 +12,29 @@
         </header>
         <main class="main">
             <section class="login">
-                <h2 class="section-title">Login</h2>
+                <h2 class="section-title">@lang('login.login-heading')</h2>
                 <form action="/login" method="post">
-                    <label>Login:</label>
+                    <label>@lang('login.login-label')</label>
                     <input type="text" name="name">
-                    <label>Password:</label>
+                    <label>@lang('login.password-label')</label>
                     <input type="password" name="password">
                     {{ csrf_field() }}
-                    <button type="submit">Login</button>
+                    <button type="submit">@lang('login.login-btn')</button>
                 </form>
             </section>
             <section class="register">
-                <h2 class="section-title">Register</h2>
+                <h2 class="section-title">@lang('login.register-heading')</h2>
                 <form action="/register" method="post">
-                    <label>Login:</label>
+                    <label>@lang('login.login-label')</label>
                     <input type="text" name="name">
-                    <label>E-mail:</label>
+                    <label>@lang('login.email-label')</label>
                     <input type="email" name="email">
-                    <label>Password:</label>
+                    <label>@lang('login.password-label')</label>
                     <input type="password" name="password">
-                    <label>Repeat password:</label>
+                    <label>@lang('login.repeat-password-label')</label>
                     <input type="password" name="repeat_password">
                     {{ csrf_field() }}
-                    <button type="submit">Register</button>
+                    <button type="submit">@lang('login.register-btn')</button>
                 </form>
             </section>
         </main>

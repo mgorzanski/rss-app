@@ -15,7 +15,7 @@ class HomeController extends Controller
       if(!Auth::check()) {
         return redirect('/login');
       }
-      new UserFeed(Auth::id());
+      //new UserFeed(Auth::id());
       $myfeed = Article::join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')->
       select('articles.id', 'articles.datetime', 'articles.title', 'articles.url', 'articles.body', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')->
       where('subscriptions.user_id', '=', Auth::id())->

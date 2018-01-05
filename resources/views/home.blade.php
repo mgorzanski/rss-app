@@ -3,14 +3,14 @@
 @section('main')
 <section class="box search-box">
 	<form class="search-form" action="/search" method="get">
-		<input type="search" class="search-input" name="query" placeholder="Search...">
-		<button type="button" class="refresh-btn" id="refresh-button">Refresh</button>
+		<input type="search" class="search-input" name="query" placeholder="@lang('feed.search-placeholder')">
+		<button type="button" class="refresh-btn" id="refresh-button">@lang('feed.refresh-btn')</button>
 	</form>
 </section>
 
 <section class="box feeds-box">
-	<h3 class="box-title">Feeds</h3>
-	<p class="box-more-link"><a href="/browse/feeds">view all &#x25B6;</a></p>
+	<h3 class="box-title">@lang('feed.box-title-feeds')</h3>
+	<p class="box-more-link"><a href="/browse/feeds">@lang('feed.view-all-subscriptions-link') &#x25B6;</a></p>
 
 	<div class="box-content">
 		<nav class="items-nav">
@@ -33,7 +33,7 @@
 </section>
 
 <section class="box my-feed-box">
-	<h3 class="box-title">Timeline</h3>
+	<h3 class="box-title">@lang('feed.box-title-timeline')</h3>
 	<div class="box-content">
 		@php
 			$id = 0;
@@ -64,7 +64,7 @@
 			</a>
 		</article>
 		@endforeach
-		<div class="more-articles-btn"><a href="#" id="load-articles" class="more-articles-link" data-id="15">Load more</a></div>
+		<div class="more-articles-btn"><a href="#" id="load-articles" class="more-articles-link" data-id="15">@lang('feed.load-more-articles-btn')</a></div>
 	</div>
 </section>
 @endsection
