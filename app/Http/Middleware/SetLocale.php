@@ -18,13 +18,11 @@ class SetLocale
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->is('login')) {
-            try {
-                $locale = Auth::user()->lang;
-                App::setLocale($locale);
-            } catch (Exception $e) {
-                App::setLocale(Config::get('app.locale'));
-            }
+        try {
+            $locale = Auth::user()->lang;
+            App::setLocale($locale);
+        } catch (\Exception $e) {
+            App::setLocale(Config::get('app.locale'));
         }
 
         return $next($request);
