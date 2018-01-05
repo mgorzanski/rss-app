@@ -34,7 +34,7 @@ body, html {
 	grid-column:1 / 2;
 }
 
-.day-night-switch {
+/*.day-night-switch {
 	grid-column:2 / 3;
 	padding:20px;
 	justify-self:end;
@@ -51,7 +51,7 @@ body, html {
 
 .day-night-switch .onoffswitch {
 	float:left;
-}
+}*/
 
 .title {
 	font-family: 'Lobster', cursive;
@@ -501,4 +501,38 @@ body, html {
 	text-decoration:none;
 	font-family: 'Oxygen', sans-serif;
 	font-size:20px;
+}
+
+.header-nav {
+	grid-column:2 / 3;
+	justify-self:end;
+}
+
+.header-menu, .header-menu li {
+	display:block;
+}
+
+.header-menu li {
+	float:left;
+	font-family: $primary-font-family;
+	font-size:1.1em;
+	border-right:1px solid #1b1b1b;
+}
+
+.header-menu li:last-child {
+	border-right:0;
+}
+
+.header-menu li a {
+	text-decoration: none;
+	color:#686868;
+	background-color:#222222;
+	line-height: 78px;
+	padding:0 13px 0 13px;
+	display: block;
+}
+
+.header-menu li a:hover {
+	color:#DFDFDF;
+	background-color: #1B1B1B;
 }
