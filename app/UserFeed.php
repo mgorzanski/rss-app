@@ -7,11 +7,11 @@ use App\Article;
 use App\Helpers\NewID;
 use willvincent\Feeds\FeedsServiceProvider;
 
-class UserFeed {
-
-  function __construct($user_id) {
+class UserFeed
+{
+  public function update() {
       $subscriptions = array();
-      $subscriptions = Subscription::select('id', 'title', 'rss_url')->where('user_id', '=', $user_id)->get();
+      $subscriptions = Subscription::select('id', 'title', 'rss_url')->get();
 
       foreach($subscriptions as $subscription) {
         $feed = \Feeds::make($subscription->rss_url);
