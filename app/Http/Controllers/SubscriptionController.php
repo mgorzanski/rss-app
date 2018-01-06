@@ -92,6 +92,8 @@ class SubscriptionController extends Controller
         $favicon = $arr[0]['href'];
         if (strpos($favicon, 'ttp') == false) {
           $favicon = $website_address . $favicon;
+        } else {
+          $favicon = '';
         }
         Subscription::where('id', $subscription_id)->update(['favicon' => $favicon]);
       }
@@ -130,14 +132,20 @@ class SubscriptionController extends Controller
             @$doc->loadHTML(file_get_contents($website_address));
             $xml = simplexml_import_dom($doc);
             $arr = $xml->xpath('//link[@rel="shortcut icon"]');
-            $favicon = $arr[0]['href'];
-            if (strpos($favicon, 'http') == false) {
-              $favicon = $website_address . $favicon;
+            if(array_key_exists(0, $arr)) {
+              $favicon = $arr[0]['href'];
+              if (strpos($favicon, 'ttp') == false) {
+                $favicon = $website_address . $favicon;
+              }
+            } else {
+              $favicon = '';
             }
 
             Subscription::insert(
                 ['id' => $id, 'title' => $title, 'rss_url' => $url, 'favicon' => $favicon, 'user_id' => Auth::id()]
             );
+
+            \Artisan::call('userfeed:update');
           }
 
           return redirect('/browse/feeds');
