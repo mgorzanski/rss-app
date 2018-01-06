@@ -90,7 +90,7 @@ class SubscriptionController extends Controller
       $arr = $xml->xpath('//link[@rel="shortcut icon"]');
       if(array_key_exists(0, $arr)) {
         $favicon = $arr[0]['href'];
-        if (strpos($favicon, 'http') == false) {
+        if (strpos($favicon, 'ttp') == false) {
           $favicon = $website_address . $favicon;
         }
         Subscription::where('id', $subscription_id)->update(['favicon' => $favicon]);
