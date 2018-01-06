@@ -9,7 +9,7 @@ use willvincent\Feeds\FeedsServiceProvider;
 
 class UserFeed
 {
-  public function update() {
+  public static function update() {
       $subscriptions = array();
       $subscriptions = Subscription::select('id', 'title', 'rss_url')->get();
 
@@ -23,7 +23,10 @@ class UserFeed
         );
 
         foreach($data['items'] as $item) {
-          $query = Article::select('id')->where('url', '=', $item->get_permalink())->first();
+          $query = Article::select('id')->where([
+            ['url', '=', $item->get_permalink()],
+            ['subscription_id', '=', $subscription->id]
+          ])->first();
 
           if(!$query) {
             do {
