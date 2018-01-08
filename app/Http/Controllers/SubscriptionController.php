@@ -88,13 +88,24 @@ class SubscriptionController extends Controller
       @$doc->loadHTML(file_get_contents($website_address));
       $xml = simplexml_import_dom($doc);
       $arr = $xml->xpath('//link[@rel="shortcut icon"]');
+      $arr2 = $xml->xpath('//link[@type="image/x-icon"]');
       if(array_key_exists(0, $arr)) {
         $favicon = $arr[0]['href'];
         if (strpos($favicon, 'ttp') == false) {
           $favicon = $website_address . $favicon;
-        } else {
-          $favicon = '';
         }
+      } elseif(array_key_exists(0, $arr2)) {
+        $favicon = $arr2[0]['href'];
+        if (strpos($favicon, 'ttp') == false) {
+          $favicon = $website_address . $favicon;
+        }
+      } else {
+        $favicon = '';
+      }
+
+      if($subscription_id == null) {
+        return $favicon;
+      } else {
         Subscription::where('id', $subscription_id)->update(['favicon' => $favicon]);
       }
     }
@@ -105,7 +116,12 @@ class SubscriptionController extends Controller
       @$doc->loadHTML(file_get_contents($website_address));
       $xpath = new \DOMXPath($doc);
       $title = $xpath->query('//title')->item(0)->nodeValue."\n";
-      Subscription::where('id', $subscription_id)->update(['title' => $title]);
+
+      if($subscription_id == null) {
+        return $title;
+      } else {
+        Subscription::where('id', $subscription_id)->update(['title' => $title]);
+      }
     }
 
     public function manage(Request $request) {
@@ -113,6 +129,10 @@ class SubscriptionController extends Controller
         if($request->has(['title', 'url', 'action'])) {
           $title = $request->input('title');
           $url = $request->input('url');
+
+          if(is_null($title)) {
+            $title = $this->updateTitle(null, $url);
+          }
 
           if($request->input('action') == "edit") {
             $query = Subscription::select('rss_url')->where('rss_url', '=', $url)->first();
@@ -125,21 +145,7 @@ class SubscriptionController extends Controller
               $query = Subscription::select('id')->where('id', '=', $id);
             } while(!$query && $id > "01000000");
   
-            $website_address = parse_url($url);
-            $website_address = $website_address['scheme'] . '://' . $website_address['host'] . '/';
-            $doc = new \DOMDocument();
-            $doc->strictErrorChecking = false;
-            @$doc->loadHTML(file_get_contents($website_address));
-            $xml = simplexml_import_dom($doc);
-            $arr = $xml->xpath('//link[@rel="shortcut icon"]');
-            if(array_key_exists(0, $arr)) {
-              $favicon = $arr[0]['href'];
-              if (strpos($favicon, 'ttp') == false) {
-                $favicon = $website_address . $favicon;
-              }
-            } else {
-              $favicon = '';
-            }
+            $favicon = $this->updateFavicon(null, $url);
 
             Subscription::insert(
                 ['id' => $id, 'title' => $title, 'rss_url' => $url, 'favicon' => $favicon, 'user_id' => Auth::id()]
