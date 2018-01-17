@@ -14,9 +14,11 @@
 					<div class="list-feed-item-drag-box">
 
 					</div>
-					<div class="list-feed-item-thumbnail">
-						<img src="{{ $feed->favicon }}" alt="{{ $feed->title }}">
-					</div>
+					@if (!empty($feed->favicon))
+						<div class="list-feed-item-thumbnail">
+							<img src="{{ $feed->favicon }}">
+						</div>
+					@endif
 					<div class="list-feed-item-heading">
 						<h6 class="list-feed-item-title"><a href="/browse/subscription/{{ $feed->id }}">{{ $feed->title }}</a></h6>
 					</div>

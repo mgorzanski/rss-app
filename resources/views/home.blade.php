@@ -18,9 +18,11 @@
 				@foreach($subscriptions as $subscription)
 				<li class="menu-item">
 					<a href="/browse/subscription/{{ $subscription->id }}">
-						<div class="menu-item-thumbnail">
-							<img src="{{ $subscription->favicon }}" alt="{{ $subscription->title }}">
-						</div>
+						@if (!empty($subscription->favicon))
+							<div class="menu-item-thumbnail">
+								<img src="{{ $subscription->favicon }}">
+							</div>
+						@endif
 						<div class="menu-item-title">
 							<p><a href="/browse/subscription/{{ $subscription->id }}">{{ $subscription->title }}</a></p>
 						</div>
@@ -46,9 +48,11 @@
 		@endphp
 		<article class="feed-article" id="feed-item-{{ $id }}">
 			<a href="/browse/article/{{ $article->id }}">
-				<div class="feed-article-subscription-thumbnail">
-					<img src="{{ $article->subscription_favicon }}" alt="{{ $article->subscription_title }}">
-				</div>
+				@if (!empty($article->subscription_favicon))
+					<div class="feed-article-subscription-thumbnail">
+						<img src="{{ $article->subscription_favicon }}">
+					</div>
+				@endif
 				<div class="feed-article-heading">
 					<h4 class="feed-article-title">{{ $article->title }}</h4>
 				</div>

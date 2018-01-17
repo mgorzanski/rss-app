@@ -24,9 +24,11 @@
 		@endphp
 		<article class="feed-article" id="feed-item-{{ $id }}">
 			<a href="/browse/article/{{ $article->id }}">
-				<div class="feed-article-subscription-thumbnail">
-					<img src="{{ $article->subscription_favicon }}" alt="{{ $article->subscription_title }}">
-				</div>
+				@if (!empty($article->subscription_favicon))
+					<div class="feed-article-subscription-thumbnail">
+						<img src="{{ $article->subscription_favicon }}">
+					</div>
+				@endif
 				<div class="feed-article-heading">
 					<h4 class="feed-article-title">{{ $article->title }}</h4>
 				</div>
