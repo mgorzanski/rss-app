@@ -145,7 +145,9 @@ class SubscriptionController extends Controller
               $query = Subscription::select('id')->where('id', '=', $id);
             } while(!$query && $id > "01000000");
   
-            $favicon = $this->updateFavicon(null, $url);
+            $website_address = parse_url($url);
+            $website_address = $website_address['scheme'] . '://' . $website_address['host'] . '/';
+            $favicon = $this->updateFavicon(null, $website_address);
 
             Subscription::insert(
                 ['id' => $id, 'title' => $title, 'rss_url' => $url, 'favicon' => $favicon, 'user_id' => Auth::id()]
