@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function index() {
+        if(Auth::check()) {
+            return redirect('/');
+        }
         return view('login');
     }
 
@@ -26,7 +29,7 @@ class LoginController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        User::insert(['name' => $name, 'email' => $email, 'password' => bcrypt($password), 'created_at' =>  date('Y-m-d H:i:s'), 'permissions' => 0]);
+        User::insert(['name' => $name, 'email' => $email, 'password' => bcrypt($password), 'created_at' =>  date('Y-m-d H:i:s'), 'permissions' => 0, 'api_token' => str_random(60)]);
         return redirect('/login');
     }
 
