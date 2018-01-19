@@ -6,6 +6,7 @@ return [
     'saved-link'    =>  'Zapisane',
     'account-link'  =>  'Konto',
     'settings-link' =>  'Ustawienia',
+    'go-back-link'  =>  'Wróć',
 ];
 
 ?>
