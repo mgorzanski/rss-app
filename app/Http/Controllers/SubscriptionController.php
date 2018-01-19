@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Subscription;
 use App\Article;
-use App\Helpers\NewID;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\DatabaseHelper;
 
@@ -141,7 +140,7 @@ class SubscriptionController extends Controller
             }
           } elseif($request->input('action') == "add") {
             do {
-              $id = NewID::get(8);
+              $id = str_pad(mt_rand(0, 99999999), 8, '0', STR_PAD_LEFT);
               $query = Subscription::select('id')->where('id', '=', $id);
             } while(!$query && $id > "01000000");
   

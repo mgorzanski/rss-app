@@ -4,7 +4,6 @@ namespace App;
 
 use App\Subscription;
 use App\Article;
-use App\Helpers\NewID;
 use willvincent\Feeds\FeedsServiceProvider;
 
 class UserFeed
@@ -30,7 +29,7 @@ class UserFeed
 
           if(!$query) {
             do {
-              $article_id = NewID::getStringId(37);
+              $article_id = str_random(37);
               $query = Article::select('id')->where('id', '=', $article_id);
             } while(!$query);
 
