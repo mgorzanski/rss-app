@@ -102,8 +102,48 @@ Article.prototype.decreaseFontSize = function (e) {
     articleBody.style.fontSize = currentFontSize - 1 + 'px';
 };
 
-Article.prototype.addToPocket = function (e) {
+Article.prototype.displaySaveForLaterNotif = function () {
+    var notif = document.querySelector('.notif');
+    var notifText = document.querySelector('.notif-text');
+    notif.style.display = "block";
+    notifText.innerHTML = "Article saved for later";
+};
+
+Article.prototype.displayAlreadySavedNotif = function () {
+    var notif = document.querySelector('.notif');
+    var notifText = document.querySelector('.notif-text');
+    notif.style.display = "block";
+    notif.className += " notif-warning";
+    notifText.innerHTML = "Article already saved";
+};
+
+Article.prototype.notifClose = function () {
+    var notif = document.querySelector('.notif');
+    notif.style.display = "none";
+    notif.className = "notif";
+};
+
+Article.prototype.saveForLater = function (e) {
     e.preventDefault();
+    if (typeof Laravel.apiToken !== 'undefined') {
+        fetch('/api/article/' + articleId + '/save-for-later', {
+            method: 'POST',
+            body: JSON.stringify({
+                api_token: Laravel.apiToken
+            }),
+            headers: { "Content-Type": "application/json" }
+        }).then(function (res) {
+            return res.json();
+        }).then(function (j) {
+            if (j == "Already added") {
+                Article.prototype.displayAlreadySavedNotif();
+            } else {
+                Article.prototype.displaySaveForLaterNotif();
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
 };
 
 var article = new Article(articleId);
@@ -111,12 +151,14 @@ var article = new Article(articleId);
 var viewSourceLink = document.querySelector('#view-source-link');
 var increaseFontSizeLink = document.querySelector('#increase-font-size-link');
 var decreaseFontSizeLink = document.querySelector('#decrease-font-size-link');
-var addToPocket = document.querySelector('#add-to-pocket-link');
+var saveForLaterLink = document.querySelector('#save-for-later');
+var notifClose = document.querySelector('#notif-close');
 
 viewSourceLink.addEventListener('click', article.viewSource);
 increaseFontSizeLink.addEventListener('click', article.increaseFontSize);
 decreaseFontSizeLink.addEventListener('click', article.decreaseFontSize);
-addToPocket.addEventListener('click', article.addToPocket);
+saveForLaterLink.addEventListener('click', article.saveForLater);
+notifClose.addEventListener('click', Article.prototype.notifClose);
 
 /***/ })
 

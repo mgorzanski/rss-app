@@ -536,3 +536,34 @@ body, html {
 	color:#DFDFDF;
 	background-color: #1B1B1B;
 }
+
+.notif {
+	display:none;
+	border-radius:4px;
+	background-color:#038b00;
+	overflow:hidden;
+	margin-bottom:20px;
+	color:#fff;
+	text-decoration:none;
+	font-family: 'Oxygen', sans-serif;
+	font-size:1.1em;
+	overflow: hidden;
+	padding:20px;
+}
+
+.notif-warning {
+	background-color: #8b0000;
+}
+
+.notif-text {
+	float:left;
+}
+
+.notif-close {
+	float: right;
+}
+
+.notif-close a {
+	text-decoration: none;
+	color:#000;
+}

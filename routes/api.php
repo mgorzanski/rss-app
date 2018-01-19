@@ -13,6 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/article/{id}/save-for-later', 'ArticleController@saveForLater')->middleware('auth:api');

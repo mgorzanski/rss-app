@@ -18,7 +18,7 @@ Route::post('/browse/feeds', 'SubscriptionController@manage');
 Route::get('/browse/article/{id}', 'ArticleController@read');
 Route::get('/login', 'LoginController@index');
 Route::get('/logout', 'LoginController@logout');
-Route::post('/login', 'LoginController@authenticate');
+Route::post('/login', [ 'as' => 'login', 'uses' => 'LoginController@authenticate']);
 Route::post('/register', 'LoginController@register');
 Route::post('/browse/load', 'LoadDataAjaxController@index');
 Route::get('/browse/subscription/{id}', 'SubscriptionController@browse');
