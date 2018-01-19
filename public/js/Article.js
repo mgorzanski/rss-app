@@ -106,7 +106,7 @@ Article.prototype.displaySaveForLaterNotif = function () {
     var notif = document.querySelector('.notif');
     var notifText = document.querySelector('.notif-text');
     notif.style.display = "block";
-    notifText.innerHTML = "Article saved for later";
+    notifText.innerHTML = Lang.notifSuccess;
 };
 
 Article.prototype.displayAlreadySavedNotif = function () {
@@ -114,7 +114,7 @@ Article.prototype.displayAlreadySavedNotif = function () {
     var notifText = document.querySelector('.notif-text');
     notif.style.display = "block";
     notif.className += " notif-warning";
-    notifText.innerHTML = "Article already saved";
+    notifText.innerHTML = Lang.notifFailed;
 };
 
 Article.prototype.notifClose = function () {

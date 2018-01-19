@@ -28,7 +28,7 @@ Article.prototype.displaySaveForLaterNotif = function () {
     let notif = document.querySelector('.notif');
     let notifText = document.querySelector('.notif-text');
     notif.style.display = "block";
-    notifText.innerHTML = "Article saved for later";
+    notifText.innerHTML = Lang.notifSuccess;
 }
 
 Article.prototype.displayAlreadySavedNotif = function () {
@@ -36,7 +36,7 @@ Article.prototype.displayAlreadySavedNotif = function () {
     let notifText = document.querySelector('.notif-text');
     notif.style.display = "block";
     notif.className += " notif-warning";
-    notifText.innerHTML = "Article already saved";
+    notifText.innerHTML = Lang.notifFailed;
 }
 
 Article.prototype.notifClose = function () {
