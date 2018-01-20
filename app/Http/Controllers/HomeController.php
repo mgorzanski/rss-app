@@ -26,6 +26,6 @@ class HomeController extends Controller
 
       $subscriptions = Subscription::select('*')->where('user_id', '=', Auth::id())->limit(6)->get();
 
-    	return view('home', ['articles' => $myfeed, 'subscriptions' => $subscriptions]);
+    	return view('home', ['articles' => $myfeed, 'subscriptions' => $subscriptions, 'api_token' => Auth::user()->api_token]);
     }
 }

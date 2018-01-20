@@ -72,3 +72,13 @@
 	</div>
 </section>
 @endsection
+
+@section('scripts')
+
+<script>
+	window.Laravel = {!! json_encode([
+		'apiToken' => $api_token
+	]) !!};
+</script>
+
+@endsection

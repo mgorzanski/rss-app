@@ -14,3 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::post('/article/{id}/save-for-later', 'ArticleController@saveForLater')->middleware('auth:api');
+Route::post('/browse/load', 'LoadDataAjaxController@index')->middleware('auth:api');

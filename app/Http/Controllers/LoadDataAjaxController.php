@@ -10,11 +10,20 @@ use App\Helpers\DatabaseHelper;
 class LoadDataAjaxController extends Controller
 {
     public function index(Request $request) {
-        $id = $request->id;
-        $feed = $request->feed;
+        try {
+            if(!Auth::check()) {
+                throw new \Exception('User not authenticated.');
+            }
+        } catch(\Exception $e) {
+            echo $e->getMessage();
+        }
+      
+        $id = $request->input('id');
+        $feed = $request->input('feed');
+        $subscription_id = $request->input('subscription_id');
+        $query = $request->input('query');
 
-        if($request->has('subscription_id') && $feed == 'subscription') {
-            $subscription_id = $request->subscription_id;
+        if(!empty($subscription_id) && $feed == 'subscription') {
             $articles = Article::join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')->
             select('articles.id', 'articles.datetime', 'articles.title', 'articles.url', 'articles.body', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')->
             where('subscriptions.id', '=', $subscription_id)->
@@ -24,7 +33,19 @@ class LoadDataAjaxController extends Controller
             select('articles.id', 'articles.datetime', 'articles.title', 'articles.url', 'articles.body', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')->
             where('subscriptions.user_id', '=', Auth::id())->
             orderBy('datetime', 'desc')->skip($id)->take(10)->get();
-        }
+        } elseif($feed == 'search' && !empty($query)) {
+            $articles = Article::join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')->
+            select('articles.id', 'articles.datetime', 'articles.title', 'articles.url', 'articles.body', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')->
+            where([
+              ['subscriptions.user_id', '=', Auth::id()],
+              ['articles.title', 'like', '%' . $query . '%']
+            ])->
+            orWhere([
+                ['subscriptions.user_id', '=', Auth::id()],
+                ['articles.body', 'like', '%' . $query . '%']
+            ])->
+            orderBy('datetime', 'desc')->skip($id)->take(10)->get();
+      }
   
         $output = '';
         if(!$articles->isEmpty()) {
