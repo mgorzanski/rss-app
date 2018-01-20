@@ -19,6 +19,7 @@
                     <label>@lang('login.password-label')</label>
                     <input type="password" name="password">
                     {{ csrf_field() }}
+                    <p class="remember-label"><input type="checkbox" name="remember"> @lang('login.remember')</p>
                     <button type="submit">@lang('login.login-btn')</button>
                 </form>
             </section>

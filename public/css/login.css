@@ -183,7 +183,7 @@ label {
   font-family: "Oxygen", sans-serif;
 }
 
-input {
+input:not([type=checkbox]) {
   padding: 0.6em;
   border: 0;
   background-color: #2E2E2E;
@@ -191,10 +191,17 @@ input {
   width: 400px;
 }
 
-input:focus {
+input:not([type=checkbox]) {
   outline: none;
   background-color: #2E2E2E;
   color: #fff;
+}
+
+.remember-label {
+  margin: 10px 0 0 0;
+  display: block;
+  font-family: "Oxygen", sans-serif;
+  font-size: 1em;
 }
 
 button {

@@ -9,6 +9,7 @@ return [
     'repeat-password-label' =>  'Powtórz hasło:',
     'register-btn'  =>  'Zarejestruj',
     'login-btn' =>  'Zaloguj',
+    'remember'  =>  'Zapamiętaj mnie',
 ];
 
 ?>

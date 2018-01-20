@@ -19,7 +19,12 @@ class LoginController extends Controller
     public function authenticate(Request $request) {
         $name = $request->input('name');
         $password = $request->input('password');
-        if(Auth::attempt(['name' => $name, 'password' => $password])) {
+        if(!empty($request->input('remember'))) {
+            $remember = true;
+        } else {
+            $remember = false;
+        }
+        if(Auth::attempt(['name' => $name, 'password' => $password], $remember)) {
             return redirect()->intended('/');
         }
     }
