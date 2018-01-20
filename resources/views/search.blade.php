@@ -26,9 +26,11 @@
 		@endphp
 		<article class="feed-article" id="feed-item-{{ $id }}">
 			<a href="/browse/article/{{ $article->id }}">
-				<div class="feed-article-subscription-thumbnail">
-					<img src="{{ $article->subscription_favicon }}" alt="{{ $article->subscription_title }}">
-				</div>
+				@if (!empty($article->subscription_favicon))
+					<div class="feed-article-subscription-thumbnail">
+						<img src="{{ $article->subscription_favicon }}">
+					</div>
+				@endif
 				<div class="feed-article-heading">
 					<h4 class="feed-article-title">{{ $article->title }}</h4>
 				</div>
@@ -44,7 +46,17 @@
 			</a>
 		</article>
 		@endforeach
-		<a href="#" id="load-articles" data-id="15"><div class="more-articles-btn">Load more</div></a>
+		<div class="more-articles-btn"><a href="#" id="load-articles" class="more-articles-link" data-id="{{ $records }}">@lang('feed.load-more-articles-btn')</a></div>
 	</div>
 </section>
+@endsection
+
+@section('scripts')
+
+<script>
+	window.Laravel = {!! json_encode([
+		'apiToken' => $api_token
+	]) !!};
+</script>
+
 @endsection

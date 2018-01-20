@@ -22,7 +22,7 @@ class SearchController extends Controller
         }
 
         if($subscription_id == null) {
-            $results = Article::join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')->
+            $query = Article::join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')->
             select('articles.id', 'articles.datetime', 'articles.title', 'articles.url', 'articles.body', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')->
             where([
                 ['subscriptions.user_id', '=', Auth::id()],
@@ -32,9 +32,9 @@ class SearchController extends Controller
                 ['subscriptions.user_id', '=', Auth::id()],
                 ['articles.body', 'like', '%' . $q . '%']
             ])->
-            orderBy('datetime', 'desc')->take(15)->get();
+            orderBy('datetime', 'desc')->take(15);
         } else {
-            $results = Article::join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')->
+            $query = Article::join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')->
             select('articles.id', 'articles.datetime', 'articles.title', 'articles.url', 'articles.body', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')->
             where([
                 ['subscriptions.user_id', '=', Auth::id()],
@@ -46,14 +46,17 @@ class SearchController extends Controller
                 ['subscriptions.id', '=', $subscription_id],
                 ['articles.body', 'like', '%' . $q . '%']
             ])->
-            orderBy('datetime', 'desc')->take(15)->get();
+            orderBy('datetime', 'desc')->take(15);
         }
+
+        $results = $query->get();
+        $records = $query->count();
   
         foreach($results as $article) {
             $article->summary = $this->summarizeText($article->body);
         }
 
-        return view('search', ['articles' => $results, 'q' => $q, 'subscription_id' => $subscription_id]);
+        return view('search', ['articles' => $results, 'q' => $q, 'subscription_id' => $subscription_id, 'records' => $records, 'api_token' => Auth::user()->api_token]);
     }
 
     public function summarizeText($summary) {
