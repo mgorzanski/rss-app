@@ -14,12 +14,41 @@
 
 		<nav class="header-nav">
 			<ul class="header-menu">
-				<li><a href="/"><i class="fas fa-home"></i>&nbsp;@lang('layout.home-link')</a></li>
-				<li><a href="/browse/feeds"><i class="fas fa-list-alt"></i>&nbsp;@lang('layout.feeds-link')</a></li>
-				<li><a href="/browse/saved"><i class="far fa-bookmark"></i>&nbsp;@lang('layout.saved-link')</a></li>
-				<li><a href="/user/profile"><i class="fas fa-user"></i>&nbsp;@lang('layout.account-link')</a></li>
-				<li><a href="/settings"><i class="fas fa-sliders-h"></i>&nbsp;@lang('layout.settings-link')</a></li>
-				<li><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+				@if (Request::is('/'))
+					<li class="header-menu-link header-menu-link-active"><a href="/"><i class="fas fa-home"></i>&nbsp;@lang('layout.home-link')</a></li>
+				@else
+					<li class="header-menu-link"><a href="/"><i class="fas fa-home"></i>&nbsp;@lang('layout.home-link')</a></li>
+				@endif
+
+				@if (Request::is('browse/feeds'))
+					<li class="header-menu-link header-menu-link-active"><a href="/browse/feeds"><i class="fas fa-list-alt"></i>&nbsp;@lang('layout.feeds-link')</a></li>
+				@else
+					<li class="header-menu-link"><a href="/browse/feeds"><i class="fas fa-list-alt"></i>&nbsp;@lang('layout.feeds-link')</a></li>
+				@endif
+
+				@if (Request::is('browse/saved'))
+					<li class="header-menu-link header-menu-link-active"><a href="/browse/saved"><i class="far fa-bookmark"></i>&nbsp;@lang('layout.saved-link')</a></li>
+				@else
+					<li class="header-menu-link"><a href="/browse/saved"><i class="far fa-bookmark"></i>&nbsp;@lang('layout.saved-link')</a></li>
+				@endif
+
+				@if (Request::is('user/profile'))
+					<li class="header-menu-link header-menu-link-active"><a href="/user/profile"><i class="fas fa-user"></i>&nbsp;@lang('layout.account-link')</a></li>
+				@else
+					<li class="header-menu-link"><a href="/user/profile"><i class="fas fa-user"></i>&nbsp;@lang('layout.account-link')</a></li>
+				@endif
+
+				@if (Request::is('settings'))
+					<li class="header-menu-link header-menu-link-active"><a href="/settings"><i class="fas fa-sliders-h"></i>&nbsp;@lang('layout.settings-link')</a></li>
+				@else
+					<li class="header-menu-link"><a href="/settings"><i class="fas fa-sliders-h"></i>&nbsp;@lang('layout.settings-link')</a></li>
+				@endif
+
+				@if (Request::is('logout'))
+					<li class="header-menu-link header-menu-link-active"><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+				@else
+					<li class="header-menu-link"><a href="/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+				@endif
 			</ul>
 		</nav>
 	</header>

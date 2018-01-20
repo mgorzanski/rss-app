@@ -508,22 +508,22 @@ body, html {
 	justify-self:end;
 }
 
-.header-menu, .header-menu li {
+.header-menu, .header-menu-link {
 	display:block;
 }
 
-.header-menu li {
+.header-menu-link {
 	float:left;
 	font-family: $primary-font-family;
 	font-size:1.1em;
 	border-right:1px solid #1b1b1b;
 }
 
-.header-menu li:last-child {
+.header-menu-link:last-child {
 	border-right:0;
 }
 
-.header-menu li a {
+.header-menu-link a {
 	text-decoration: none;
 	color:#686868;
 	background-color:#222222;
@@ -532,7 +532,12 @@ body, html {
 	display: block;
 }
 
-.header-menu li a:hover {
+.header-menu-link a:hover {
+	color:#DFDFDF;
+	background-color: #1B1B1B;
+}
+
+.header-menu-link-active a {
 	color:#DFDFDF;
 	background-color: #1B1B1B;
 }
