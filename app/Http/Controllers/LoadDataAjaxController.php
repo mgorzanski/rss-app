@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Article;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\DatabaseHelper;
+use App;
+use Config;
+use Lang;
 
 class LoadDataAjaxController extends Controller
 {
@@ -16,6 +19,13 @@ class LoadDataAjaxController extends Controller
             }
         } catch(\Exception $e) {
             echo $e->getMessage();
+        }
+
+        try {
+            $locale = Auth::user()->lang;
+            App::setLocale($locale);
+        } catch (\Exception $e) {
+            App::setLocale(Config::get('app.locale'));
         }
       
         $id = $request->input('id');
@@ -71,7 +81,7 @@ class LoadDataAjaxController extends Controller
                         </article>';
           }
   
-          $output .= '<div class="more-articles-btn"><a href="#" id="load-articles" class="more-articles-link" data-id="' . $id . '">Load more</a></div>';
+          $output .= '<div class="more-articles-btn"><a href="#" id="load-articles" class="more-articles-link" data-id="' . $id . '">' . Lang::get('feed.load-more-articles-btn') . '</a></div>';
   
           echo $output;
         }

@@ -79,6 +79,11 @@
 	window.Laravel = {!! json_encode([
 		'apiToken' => $api_token
 	]) !!};
+
+	window.Lang = {!! json_encode([
+		'loadingArticlesLabel'	=>	__('feed.loading-articles-label'),
+		'noMoreArticlesLabel'	=>	__('feed.no-more-articles-label')
+	]) !!};
 </script>
 
 @endsection

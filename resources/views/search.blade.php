@@ -2,18 +2,18 @@
 
 @section('main')
 <section class="box search-box">
-	<p class="back-link"><a href="/">&#x25C0; Go back</a></p>
+	<p class="back-link"><a href="/">&#x25C0; @lang('layout.go-back-link')</a></p>
 	<form class="search-form" action="/search" method="get">
-		<input type="search" class="search-input" name="query" placeholder="Search..." value="{{ $q }}">
+		<input type="search" class="search-input" name="query" placeholder="@lang('feed.search-placeholder')" value="{{ $q }}">
         @if($subscription_id != null)
 		<input type="hidden" name="subscriptionId" value="{{ $subscription_id }}">
         @endif
-		<button type="button" class="refresh-btn" id="refresh-button">Refresh</button>
+		<button type="button" class="refresh-btn" id="refresh-button">@lang('feed.refresh-btn')</button>
 	</form>
 </section>
 
 <section class="box my-feed-box">
-	<h3 class="box-title">Search results for... "{{ $q }}"</h3>
+	<h3 class="box-title">@lang('feed.search-results-for') "{{ $q }}"</h3>
 	<div class="box-content">
 		@php
 			$id = 0;
@@ -56,6 +56,11 @@
 <script>
 	window.Laravel = {!! json_encode([
 		'apiToken' => $api_token
+	]) !!};
+
+	window.Lang = {!! json_encode([
+		'loadingArticlesLabel'	=>	__('feed.loading-articles-label'),
+		'noMoreArticlesLabel'	=>	__('feed.no-more-articles-label')
 	]) !!};
 </script>
 

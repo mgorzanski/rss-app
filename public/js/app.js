@@ -31738,7 +31738,7 @@ function getData() {
     }
 
     if (typeof Laravel.apiToken !== 'undefined') {
-        $("#load-articles").html("Loading...");
+        $("#load-articles").html(Lang.loadingArticlesLabel);
         fetch('/api/browse/load', {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -31760,7 +31760,7 @@ function getData() {
                 $('.more-articles-btn').remove();
                 $('.my-feed-box .box-content').append(j);
             } else {
-                $('#load-articles').html("No data");
+                $('#load-articles').html(Lang.noMoreArticlesLabel);
             }
         }).catch(function (err) {
             console.log(err);

@@ -2,11 +2,11 @@
 
 @section('main')
 <section class="box search-box">
-	<p class="back-link"><a href="/">&#x25C0; Go back</a></p>
+	<p class="back-link"><a href="/">&#x25C0; @lang('layout.go-back-link')</a></p>
 	<form class="search-form" action="/search" method="get">
-		<input type="search" class="search-input" name="query" placeholder="Search...">
+		<input type="search" class="search-input" name="query" placeholder="@lang('feed.search-placeholder')">
 		<input type="hidden" name="subscriptionId" value="{{ $subscription->id }}">
-		<button type="button" class="refresh-btn" id="refresh-button">Refresh</button>
+		<button type="button" class="refresh-btn" id="refresh-button">@lang('feed.refresh-btn')</button>
 	</form>
 </section>
 
@@ -44,7 +44,7 @@
 			</a>
 		</article>
 		@endforeach
-		<div class="more-articles-btn"><a href="#" id="load-articles" class="more-articles-link" data-id="15">Load more</a></div>
+		<div class="more-articles-btn"><a href="#" id="load-articles" class="more-articles-link" data-id="15">@lang('feed.load-more-articles-btn')</a></div>
 	</div>
 </section>
 @endsection
@@ -54,6 +54,11 @@
 <script>
 	window.Laravel = {!! json_encode([
 		'apiToken' => $api_token
+	]) !!};
+	
+	window.Lang = {!! json_encode([
+		'loadingArticlesLabel'	=>	__('feed.loading-articles-label'),
+		'noMoreArticlesLabel'	=>	__('feed.no-more-articles-label')
 	]) !!};
 </script>
 
