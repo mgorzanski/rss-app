@@ -40,6 +40,10 @@ class SubscriptionController extends Controller
         orderBy('datetime', 'desc')->take(15)->get();
         $subscription = Subscription::select('*')->where('id', '=', $subscription_id)->first();
 
+        foreach($articles as $article) {
+          $article->summary = DatabaseHelper::summarizeText($article->body, 200);
+        }
+
         return view('feeds.subscription', ['articles' => $articles, 'subscription' => $subscription, 'api_token' => Auth::user()->api_token]);
       }
     }
