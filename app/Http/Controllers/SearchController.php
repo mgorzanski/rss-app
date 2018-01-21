@@ -59,13 +59,4 @@ class SearchController extends Controller
 
         return view('search', ['articles' => $results, 'q' => $q, 'subscription_id' => $subscription_id, 'records' => $records, 'api_token' => Auth::user()->api_token]);
     }
-
-    public function summarizeText($summary) {
-        $summary = strip_tags($summary);
-        $max_len = 200;
-        if(strlen($summary) > $max_len)
-            $summary = substr($summary, 0, $max_len) . '...';
-
-        return $summary;
-    }
 }
