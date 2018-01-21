@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Subscription;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\DatabaseHelper;
 
 class SearchController extends Controller
 {
@@ -53,7 +54,7 @@ class SearchController extends Controller
         $records = $query->count();
   
         foreach($results as $article) {
-            $article->summary = $this->summarizeText($article->body);
+            $article->summary = DatabaseHelper::summarizeText($article->body, 200);
         }
 
         return view('search', ['articles' => $results, 'q' => $q, 'subscription_id' => $subscription_id, 'records' => $records, 'api_token' => Auth::user()->api_token]);
