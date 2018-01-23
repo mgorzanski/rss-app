@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Today</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -11,7 +12,13 @@
 		<div class="heading">
 			<h2 class="title"><a href="/">Today</a></h2>
 		</div>
-
+		
+		<div class="hamburger-toggle" onclick="toggleHamburgerMenu(this)">
+			<div class="hamburger-toggle-bar1"></div>
+			<div class="hamburger-toggle-bar2"></div>
+			<div class="hamburger-toggle-bar3"></div>
+		</div>
+		
 		<nav class="header-nav">
 			<ul class="header-menu">
 				@if (Request::is('/'))
@@ -60,6 +67,12 @@
 	</main>
 
 	<script src="{{ asset('js/app.js') }}"></script>
+	<script>
+		function toggleHamburgerMenu (element) {
+			element.classList.toggle("hamburger-open");
+			$('.header-nav').toggle();
+		}
+	</script>
 	@yield('scripts')
 </body>
 </html>
