@@ -63,23 +63,39 @@ class LoadDataAjaxController extends Controller
             $id++;
             $summary = DatabaseHelper::summarizeText($article->body, 200);
             $datetime = substr($article->datetime, 0, -3);
-            $output .= '<article class="feed-article" id="feed-item-' . $id . '">
-                          <a href="/browse/article/' . $article->id . '">
-                            <div class="feed-article-subscription-thumbnail">
-                              <img src="' . $article->subscription_favicon . '" alt="' . $article->subscription_title . '">
-                            </div>
-                            <div class="feed-article-heading">
-                              <h4 class="feed-article-title">' . $article->title . '</h4>
-                            </div>
-                            <div class="feed-article-intro">
-                              <p>' . $summary . '</p>
-                            </div>
-                            <div class="feed-article-meta">
-                              <p>' . $article->subscription_title . ', ' . $datetime . '</p>
-                            </div>
-                          </a>
+            if (!empty($article->subscription_favicon)) {
+                $output .= '<article class="feed-article" id="feed-item-' . $id . '">
+                            <a href="/browse/article/' . $article->id . '">
+                                <div class="feed-article-subscription-thumbnail">
+                                    <img src="' . $article->subscription_favicon . '" alt="' . $article->subscription_title . '">
+                                </div>
+                                <div class="feed-article-heading">
+                                    <h4 class="feed-article-title">' . $article->title . '</h4>
+                                </div>
+                                <div class="feed-article-intro">
+                                    <p>' . $summary . '</p>
+                                </div>
+                                <div class="feed-article-meta">
+                                    <p>' . $article->subscription_title . ', ' . $datetime . '</p>
+                                </div>
+                            </a>
                         </article>';
-          }
+                } else {
+                    $output .= '<article class="feed-article" id="feed-item-' . $id . '">
+                                    <a href="/browse/article/' . $article->id . '">
+                                        <div class="feed-article-heading">
+                                            <h4 class="feed-article-title">' . $article->title . '</h4>
+                                        </div>
+                                        <div class="feed-article-intro">
+                                            <p>' . $summary . '</p>
+                                        </div>
+                                        <div class="feed-article-meta">
+                                            <p>' . $article->subscription_title . ', ' . $datetime . '</p>
+                                        </div>
+                                    </a>
+                                </article>';
+                }
+            }
   
           $output .= '<div class="more-articles-btn"><a href="#" id="load-articles" class="more-articles-link" data-id="' . $id . '">' . Lang::get('feed.load-more-articles-btn') . '</a></div>';
   
