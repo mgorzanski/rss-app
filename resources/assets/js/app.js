@@ -26,3 +26,4 @@ const app = new Vue({
 
 //require('./jquery-3.2.1');
 require('./loadDataAjax');
+require('./fontawesome-all');
