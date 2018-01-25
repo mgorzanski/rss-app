@@ -89,20 +89,24 @@ class SubscriptionController extends Controller
       $doc = new \DOMDocument();
       $doc->strictErrorChecking = false;
       @$doc->loadHTML(file_get_contents($website_address));
-      $xml = simplexml_import_dom($doc);
-      $arr = $xml->xpath('//link[@rel="shortcut icon"]');
-      $arr2 = $xml->xpath('//link[@type="image/x-icon"]');
-      if(array_key_exists(0, $arr)) {
-        $favicon = $arr[0]['href'];
-        if (strpos($favicon, 'ttp') == false) {
-          $favicon = $website_address . $favicon;
+      try {
+        $xml = simplexml_import_dom($doc);
+        $arr = $xml->xpath('//link[@rel="shortcut icon"]');
+        $arr2 = $xml->xpath('//link[@type="image/x-icon"]');
+        if(array_key_exists(0, $arr)) {
+          $favicon = $arr[0]['href'];
+          if (strpos($favicon, 'ttp') == false) {
+            $favicon = $website_address . $favicon;
+          }
+        } elseif(array_key_exists(0, $arr2)) {
+          $favicon = $arr2[0]['href'];
+          if (strpos($favicon, 'ttp') == false) {
+            $favicon = $website_address . $favicon;
+          }
+        } else {
+          $favicon = '';
         }
-      } elseif(array_key_exists(0, $arr2)) {
-        $favicon = $arr2[0]['href'];
-        if (strpos($favicon, 'ttp') == false) {
-          $favicon = $website_address . $favicon;
-        }
-      } else {
+      } catch (\Exception $e) {
         $favicon = '';
       }
 
