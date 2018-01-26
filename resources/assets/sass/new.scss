@@ -12,7 +12,6 @@
 	font-size:1.1em;
 	width:220px;
     display:inline-block;
-    margin:0 0 12px 0;
 }
 
 .settings__label--description {
@@ -21,6 +20,10 @@
     display:block;
     margin:10px 0 0 0;
     color:#d1d1d1;
+}
+
+.settings__text, .settings__select, .settings__checkbox {
+    margin:0 0 0 100px;
 }
 
 .settings__text {
@@ -33,20 +36,29 @@
 	position: relative;
 }
 
+.settings__select {
+    outline:none;
+    padding:10px;
+    background-color:#C9C9C9;
+	border:1px solid #545454;
+    width:350px;
+    position: relative;
+}
+
 .settings__submit {
 	box-sizing:border-box;
 	outline:none;
 	color:#333;
 	background-color:#C9C9C9;
 	border:1px solid #545454;
-	padding:11px;
-	font-size:18px;
-	width:370px;
-	margin:5px 0 0 64px;
+	padding:10px;
+    font-size:17px;
+    margin:0 0 0 320px;
+	width:130px;
 	font-weight:bold;
 	border-radius:2px;
 }
 
 .settings__form-row {
-	margin:5px 0 5px 0;
+	margin:5px 0 25px 0;
 }
