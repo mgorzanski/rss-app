@@ -25,5 +25,11 @@ const app = new Vue({
 
 
 window.$ = window.jQuery = require('jquery');
-require('./loadDataAjax');
+
 require('./fontawesome-all');
+
+$(document).ready(function() {
+    if (typeof UseScripts !== 'undefined' && UseScripts.includes('loadDataAjax')) {
+        require('./loadDataAjax');
+    }
+});

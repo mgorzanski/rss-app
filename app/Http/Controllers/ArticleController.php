@@ -24,29 +24,4 @@ class ArticleController extends Controller
             return view('read', ['article' => $query, 'api_token' => Auth::user()->api_token]);
         }
     }
-
-    public function saveForLater($article_id, Request $request) {
-        try {
-            if(!Auth::check()) {
-                throw new \Exception('User not authenticated.');
-            }
-        } catch(\Exception $e) {
-            echo $e->getMessage();
-        }
-
-        $datetime = date("Y-m-d H:i:s");
-        $user_id = Auth::guard('api')->id();
-
-        if (!DB::table('saved')->select('id')->where([
-            ['article_id', '=', $article_id],
-            ['user_id', '=', $user_id]
-        ])->get()) {
-
-            DB::table('saved')->insert([
-                ['article_id' => $article_id, 'datetime' => $datetime, 'user_id' => $user_id]
-            ]);
-        } else {
-            return json_encode("Already added");
-        }
-    }
 }

@@ -84,6 +84,8 @@
 		'loadingArticlesLabel'	=>	__('feed.loading-articles-label'),
 		'noMoreArticlesLabel'	=>	__('feed.no-more-articles-label')
 	]) !!};
+
+	window.UseScripts = ['loadDataAjax'];
 </script>
 
 @endsection

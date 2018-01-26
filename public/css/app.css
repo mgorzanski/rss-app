@@ -439,15 +439,18 @@ html {
   transition: .3s opacity;
 }
 
-.feeds-list-menu {
+.feeds-list-menu,
+.saved-list-menu {
   display: block;
 }
 
-.feeds-list-box {
+.feeds-list-box,
+.saved-list-box {
   margin-top: 20px;
 }
 
-.list-feed-item {
+.list-feed-item,
+.saved-item {
   padding: 20px;
   border-radius: 4px;
   background-color: #2E2E2E;
@@ -457,32 +460,38 @@ html {
   display: block;
 }
 
-.list-feed-item-thumbnail {
+.list-feed-item-thumbnail,
+.saved-item-thumbnail {
   float: left;
   width: 25px;
 }
 
-.list-feed-item-thumbnail img {
+.list-feed-item-thumbnail img,
+.saved-item-thumbnail img {
   width: 16px;
   height: 16px;
 }
 
-.list-feed-item-heading {
+.list-feed-item-heading,
+.saved-item-heading {
   float: left;
 }
 
-.list-feed-item-title a {
+.list-feed-item-title a,
+.saved-item-title a {
   color: #fff;
   text-decoration: none;
   font-family: 'Oxygen', sans-serif;
   font-size: 1.1em;
 }
 
-.list-feed-item-actions {
+.list-feed-item-actions,
+.saved-item-actions {
   float: right;
 }
 
-.list-feed-item-action {
+.list-feed-item-action,
+.saved-item-action {
   float: left;
   margin-left: 12px;
 }
@@ -816,6 +825,16 @@ html {
 .notif-close a {
   text-decoration: none;
   color: #000;
+}
+
+.box-content-description {
+  border-radius: 4px;
+  background-color: #2E2E2E;
+  padding: 30px;
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: 0.9em;
+  font-family: 'Oxygen', sans-serif;
 }
 
 @media only screen and (max-width: 980px) {

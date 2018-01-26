@@ -61,7 +61,7 @@ Article.prototype.saveForLater = function (e) {
         .then((j) => {
             if (j == "Already added") {
                 Article.prototype.displayAlreadySavedNotif();
-            } else {
+            } else if (j == "Added successfully") {
                 Article.prototype.displaySaveForLaterNotif();
             }
         })

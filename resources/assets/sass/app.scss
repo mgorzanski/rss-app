@@ -563,4 +563,46 @@ body, html {
 	color:#000;
 }
 
+.saved-list-box {
+	@extend .feeds-list-box;
+}
+
+.saved-list-menu {
+	@extend .feeds-list-menu;
+}
+
+.saved-item {
+	@extend .list-feed-item;
+}
+
+.saved-item-thumbnail {
+	@extend .list-feed-item-thumbnail;
+}
+
+.saved-item-heading {
+	@extend .list-feed-item-heading;
+}
+
+.saved-item-title {
+	@extend .list-feed-item-title;
+}
+
+.saved-item-actions {
+	@extend .list-feed-item-actions;
+}
+
+.saved-item-action {
+	@extend .list-feed-item-action;
+}
+
+.box-content-description {
+	border-radius:4px;
+	background-color:#2E2E2E;
+	padding:30px;
+	margin-bottom:12px;
+	color:#fff;
+	font-size:0.9em;
+	font-family: 'Oxygen', sans-serif;
+}
+
 @import 'mobile';
