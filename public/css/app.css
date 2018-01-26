@@ -1,4 +1,28 @@
-@import url(https://fonts.googleapis.com/css?family=PT+Sans:700);@import url(https://fonts.googleapis.com/css?family=Anton);@import url(https://fonts.googleapis.com/css?family=Oxygen);@import url(https://fonts.googleapis.com/css?family=Russo+One);@import url(https://fonts.googleapis.com/css?family=Lobster);/* http://meyerweb.com/eric/tools/css/reset/ 
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:700);@font-face {
+  font-family: 'Russo One';
+  src: url("/fonts/RussoOneRegular.ttf") format("truetype");
+  src: url("/fonts/RussoOneRegular.ttf") format("truetype"), url("/fonts/RussoOneRegular.woff2") format("woff2"), url("/fonts/RussoOneRegular.eot") format("embedded-opentype"), url("/fonts/RussoOneRegular.woff") format("woff"), url("/fonts/RussoOneRegular.svg#RussoOneRegular") format("svg");
+}
+
+@font-face {
+  font-family: 'Lobster';
+  src: url("/fonts/LobsterRegular.ttf") format("truetype");
+  src: url("/fonts/LobsterRegular.ttf") format("truetype"), url("/fonts/LobsterRegular.woff2") format("woff2"), url("/fonts/LobsterRegular.eot") format("embedded-opentype"), url("/fonts/LobsterRegular.woff") format("woff"), url("/fonts/LobsterRegular.svg#LobsterRegular") format("svg");
+}
+
+@font-face {
+  font-family: 'Anton';
+  src: url("/fonts/AntonRegular.ttf") format("truetype");
+  src: url("/fonts/AntonRegular.ttf") format("truetype"), url("/fonts/AntonRegular.woff2") format("woff2"), url("/fonts/AntonRegular.eot") format("embedded-opentype"), url("/fonts/AntonRegular.woff") format("woff"), url("/fonts/AntonRegular.svg#AntonRegular") format("svg");
+}
+
+@font-face {
+  font-family: 'Oxygen';
+  src: url("/fonts/OxygenRegular.ttf") format("truetype");
+  src: url("/fonts/OxygenRegular.ttf") format("truetype"), url("/fonts/OxygenRegular.woff2") format("woff2"), url("/fonts/OxygenRegular.eot") format("embedded-opentype"), url("/fonts/OxygenRegular.woff") format("woff"), url("/fonts/OxygenRegular.svg#OxygenRegular") format("svg");
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
