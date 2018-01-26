@@ -23,3 +23,4 @@ Route::post('/register', 'LoginController@register');
 Route::get('/browse/subscription/{id}', 'SubscriptionController@browse');
 Route::get('/search', 'SearchController@query');
 Route::get('/browse/saved', 'SavedController@index');
+Route::get('/settings', 'SettingsController@index');

@@ -1,0 +1,52 @@
+.settings-box {
+    @extend .saved-list-box;
+}
+
+.settings {
+    margin:15px 0 0 0;
+}
+
+.settings__label {
+    font-family: 'Oxygen', sans-serif;
+	color:$primary-font-color;
+	font-size:1.1em;
+	width:220px;
+    display:inline-block;
+    margin:0 0 12px 0;
+}
+
+.settings__label--description {
+    @extend .settings__label;
+    font-size:0.8em;
+    display:block;
+    margin:10px 0 0 0;
+    color:#d1d1d1;
+}
+
+.settings__text {
+	outline:none;
+	color:$box-font-color;
+	border:0;
+	padding:10px;
+	background-color:#333;
+	width:350px;
+	position: relative;
+}
+
+.settings__submit {
+	box-sizing:border-box;
+	outline:none;
+	color:#333;
+	background-color:#C9C9C9;
+	border:1px solid #545454;
+	padding:11px;
+	font-size:18px;
+	width:370px;
+	margin:5px 0 0 64px;
+	font-weight:bold;
+	border-radius:2px;
+}
+
+.settings__form-row {
+	margin:5px 0 5px 0;
+}
