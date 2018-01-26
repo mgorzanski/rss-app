@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+//require('./bootstrap');
 
 //window.Vue = require('vue');
 
@@ -24,6 +24,6 @@ const app = new Vue({
 */
 
 
-//require('./jquery-3.2.1');
+window.$ = window.jQuery = require('jquery');
 require('./loadDataAjax');
 require('./fontawesome-all');
