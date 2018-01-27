@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Controllers\SettingsController;
+use App\Settings;
 
 class User extends Authenticatable
 {
@@ -31,7 +31,7 @@ class User extends Authenticatable
     public static function boot() {
         static::created(function ($model) {
             $userId = $this->orderBy('created_at', 'desc')->first();
-            SettingsController::insertDefaultSettings($userId);
+            Settings::insertDefaultSettings($userId);
         });
     }
 }
