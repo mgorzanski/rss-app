@@ -14,7 +14,7 @@ class NewSetting extends Command
      *
      * @var string
      */
-    protected $signature = 'settings:new {name} {value}';
+    protected $signature = 'settings:new {name} {value} {type} {available_values}';
 
     /**
      * The console command description.
@@ -44,9 +44,11 @@ class NewSetting extends Command
         foreach($users as $user) {
             $name = $this->argument('name');
             $value = $this->argument('value');
+            $type = $this->argument('type');
+            $available_values = $this->argument('available_values');
 
             Setting::insert(
-                ['name' => $name, 'value' => $value, 'user_id' => $user->user_id]
+                ['name' => $name, 'value' => $value, 'user_id' => $user->user_id, 'type' => $type, 'available_values' => $available_values]
             );
         }
     }
