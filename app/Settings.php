@@ -26,6 +26,7 @@ class Settings
             $data['label'] = self::getNameTranslation($setting['name']);
             $data['name'] = $setting['name'];
             $data['description'] = self::getDescriptionTranslation($setting['name']);
+            $data['value'] = $setting['value'];
 
             $row->view = $view;
             $row->data = $data;
