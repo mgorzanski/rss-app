@@ -10,6 +10,10 @@ use App\Settings;
 class SettingsController extends Controller
 {
     public function index (Request $request) {
+        if(!Auth::check()) {
+            return redirect('/login');
+        }
+
         $lang = Auth::user()->lang;
         $settings = Settings::getArrayOfSettings();
         return view('settings', ['lang' => $lang, 'settings' => $settings]);
@@ -17,6 +21,10 @@ class SettingsController extends Controller
 
     public function submit (Request $request) {
         $lang = $request->input('lang');
+        $userSettings = $request->all();
+
+        Settings::updateSettings($userSettings);
+        return redirect('/settings');
     }
 
     public static function insertDefaultSettings($userId) {

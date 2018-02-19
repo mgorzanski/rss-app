@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Support\Facades\Auth;
 use App\Setting;
 use Lang;
+use Illuminate\Support\Collections;
 
 class Settings
 {
@@ -58,6 +59,36 @@ class Settings
         Setting::insert(
             ['name' => 'always_open_source_of_article', 'value' =>  0, 'user_id' => $userId]
         );
+    }
+
+    public static function updateSettings($settings) {
+        $userId = Auth::id();
+
+        $latestSettings = Setting::select('*')
+                                  ->where('user_id', '=', Auth::id())
+                                  ->orderBy('id', 'desc')
+                                  ->get();
+
+        $tempArray = collect($latestSettings)->toArray();
+        $latestSettings = array();
+
+        foreach($tempArray as $key => $value) {
+            $latestSettings[$value['name']] = $value['value'];
+        }
+
+        foreach($latestSettings as $key => $value) {
+            if (array_key_exists($key, $settings)) {
+                self::updateSetting($key, $settings[$key], $userId);
+            }
+        }
+    }
+
+    public static function updateSetting($name, $value, $userId) {
+        Setting::where([
+            ['user_id', '=', $userId],
+            ['name', '=', $name],
+        ])->update(['value' => $value]);
+        //echo var_dump($value);
     }
 }
 
