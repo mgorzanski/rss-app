@@ -74,12 +74,15 @@ class Settings
         $latestSettings = array();
 
         foreach($tempArray as $key => $value) {
-            $latestSettings[$value['name']] = $value['value'];
+            $latestSettings[$value['name']] = $value['available_values'];
         }
 
         foreach($latestSettings as $key => $value) {
             if (array_key_exists($key, $settings)) {
-                self::updateSetting($key, $settings[$key], $userId);
+                $availableValues = explode('|', $value);
+                if (in_array($settings[$key], $availableValues)) {
+                    self::updateSetting($key, $settings[$key], $userId);
+                }
             }
         }
     }
