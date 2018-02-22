@@ -90,6 +90,11 @@
 	]) !!};
 
 	window.UseScripts = ['loadDataAjax'];
+
+	var refresh = document.querySelector('#refresh-button');
+	refresh.addEventListener('click', function () {
+		window.location.reload();
+	});
 </script>
 
 @endsection
