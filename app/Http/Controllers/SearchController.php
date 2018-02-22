@@ -7,6 +7,7 @@ use App\Article;
 use App\Subscription;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\DatabaseHelper;
+use App\Settings;
 
 class SearchController extends Controller
 {
@@ -57,6 +58,10 @@ class SearchController extends Controller
             $article->summary = DatabaseHelper::summarizeText($article->body, 200);
         }
 
-        return view('search', ['articles' => $results, 'q' => $q, 'subscription_id' => $subscription_id, 'records' => $records, 'api_token' => Auth::user()->api_token]);
+        $settings = [];
+        $option = Settings::settingValue('always_open_source_of_article', Auth::id());
+        $settings['always_open_source_of_article'] = $option;
+
+        return view('search', ['articles' => $results, 'q' => $q, 'subscription_id' => $subscription_id, 'records' => $records, 'settings' => $settings, 'api_token' => Auth::user()->api_token]);
     }
 }

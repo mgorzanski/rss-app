@@ -92,7 +92,14 @@ class Settings
             ['user_id', '=', $userId],
             ['name', '=', $name],
         ])->update(['value' => $value]);
-        //echo var_dump($value);
+    }
+
+    public static function settingValue($name, $userId) {
+        $setting = Setting::select('value')->where([
+            ['user_id', '=', $userId],
+            ['name', '=', $name]
+        ])->first();
+        return $setting->value;
     }
 }
 

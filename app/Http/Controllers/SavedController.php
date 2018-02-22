@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\DatabaseHelper;
+use App\Settings;
 
 class SavedController extends Controller
 {
@@ -27,14 +28,18 @@ class SavedController extends Controller
             return redirect('/browse/saved');
         }
 
-        $savedArticles = DB::table('saved')->select('saved.id as saved_id', 'saved.article_id as saved_article_id', 'saved.datetime as saved_datetime', 'articles.datetime as article_datetime', 'articles.title as article_title', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')
+        $savedArticles = DB::table('saved')->select('saved.id as saved_id', 'saved.article_id as saved_article_id', 'saved.datetime as saved_datetime', 'articles.datetime as article_datetime', 'articles.title as article_title', 'articles.url as article_url', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')
                             ->join('articles', 'saved.article_id', '=', 'articles.id')
                             ->join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')
                             ->where('saved.user_id', '=', Auth::id())
                             ->orderBy('saved.datetime', 'desc')
                             ->get();
 
-        return view('saved', ['savedArticles' => $savedArticles, 'api_token' => Auth::user()->api_token]);
+        $settings = [];
+        $option = Settings::settingValue('always_open_source_of_article', Auth::id());
+        $settings['always_open_source_of_article'] = $option;
+
+        return view('saved', ['savedArticles' => $savedArticles, 'settings' => $settings, 'api_token' => Auth::user()->api_token]);
     }
 
     public function saveForLater($article_id, Request $request) {

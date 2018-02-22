@@ -6,6 +6,7 @@ use App\Subscription;
 use App\Article;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\DatabaseHelper;
+use App\Settings;
 
 class SubscriptionController extends Controller
 {
@@ -44,7 +45,11 @@ class SubscriptionController extends Controller
           $article->summary = DatabaseHelper::summarizeText($article->body, 200);
         }
 
-        return view('feeds.subscription', ['articles' => $articles, 'subscription' => $subscription, 'api_token' => Auth::user()->api_token]);
+        $settings = [];
+        $option = Settings::settingValue('always_open_source_of_article', Auth::id());
+        $settings['always_open_source_of_article'] = $option;
+
+        return view('feeds.subscription', ['articles' => $articles, 'subscription' => $subscription, 'settings' => $settings, 'api_token' => Auth::user()->api_token]);
       }
     }
 

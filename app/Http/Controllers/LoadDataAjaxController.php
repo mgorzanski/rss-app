@@ -9,6 +9,7 @@ use App\Helpers\DatabaseHelper;
 use App;
 use Config;
 use Lang;
+use App\Settings;
 
 class LoadDataAjaxController extends Controller
 {
@@ -55,7 +56,11 @@ class LoadDataAjaxController extends Controller
                 ['articles.body', 'like', '%' . $query . '%']
             ])->
             orderBy('datetime', 'desc')->skip($id)->take(10)->get();
-      }
+        }
+
+        $settings = [];
+        $option = Settings::settingValue('always_open_source_of_article', Auth::id());
+        $settings['always_open_source_of_article'] = $option;
   
         $output = '';
         if(!$articles->isEmpty()) {
@@ -64,9 +69,13 @@ class LoadDataAjaxController extends Controller
             $summary = DatabaseHelper::summarizeText($article->body, 200);
             $datetime = substr($article->datetime, 0, -3);
             if (!empty($article->subscription_favicon)) {
-                $output .= '<article class="feed-article" id="feed-item-' . $id . '">
-                            <a href="/browse/article/' . $article->id . '">
-                                <div class="feed-article-subscription-thumbnail">
+                $output .= '<article class="feed-article" id="feed-item-' . $id . '">';
+                if ($settings['always_open_source_of_article'] === 'on') {
+                    $output .= '<a href="' . $article->url . '">';
+                } else {
+                    $output .= '<a href="/browse/article/' . $article->id . '">';
+                }
+                $output .= '    <div class="feed-article-subscription-thumbnail">
                                     <img src="' . $article->subscription_favicon . '" alt="' . $article->subscription_title . '">
                                 </div>
                                 <div class="feed-article-heading">
@@ -81,9 +90,13 @@ class LoadDataAjaxController extends Controller
                             </a>
                         </article>';
                 } else {
-                    $output .= '<article class="feed-article" id="feed-item-' . $id . '">
-                                    <a href="/browse/article/' . $article->id . '">
-                                        <div class="feed-article-heading">
+                    $output .= '<article class="feed-article" id="feed-item-' . $id . '">';
+                    if ($settings['always_open_source_of_article'] === 'on') {
+                        $output .= '<a href="' . $article->url . '">';
+                    } else {
+                        $output .= '<a href="/browse/article/' . $article->id . '">';
+                    }
+                    $output .= '        <div class="feed-article-heading">
                                             <h4 class="feed-article-title">' . $article->title . '</h4>
                                         </div>
                                         <div class="feed-article-intro">

@@ -23,7 +23,11 @@
 			$id++;
 		@endphp
 		<article class="feed-article" id="feed-item-{{ $id }}">
+			@if ($settings['always_open_source_of_article'] === 'on')
+			<a href="{{ $article->url }}">
+			@else
 			<a href="/browse/article/{{ $article->id }}">
+			@endif
 				@if (!empty($article->subscription_favicon))
 					<div class="feed-article-subscription-thumbnail">
 						<img src="{{ $article->subscription_favicon }}">

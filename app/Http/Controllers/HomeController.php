@@ -8,6 +8,7 @@ use App\Article;
 use App\Subscription;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\DatabaseHelper;
+use App\Settings;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,10 @@ class HomeController extends Controller
 
       $subscriptions = Subscription::select('*')->where('user_id', '=', Auth::id())->limit(6)->get();
 
-    	return view('home', ['articles' => $myfeed, 'subscriptions' => $subscriptions, 'api_token' => Auth::user()->api_token]);
+      $settings = [];
+      $option = Settings::settingValue('always_open_source_of_article', Auth::id());
+      $settings['always_open_source_of_article'] = $option;
+
+    	return view('home', ['articles' => $myfeed, 'subscriptions' => $subscriptions, 'settings' => $settings, 'api_token' => Auth::user()->api_token]);
     }
 }

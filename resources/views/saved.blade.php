@@ -22,7 +22,13 @@
 						</div>
 					@endif
 					<div class="saved-item-heading">
-						<h6 class="saved-item-title"><a href="/browse/article/{{ $savedArticle->saved_article_id }}">{{ $savedArticle->article_title }}</a></h6>
+						<h6 class="saved-item-title">
+						@if ($settings['always_open_source_of_article'] === 'on')
+						<a href="{{ $savedArticle->article_url }}">{{ $savedArticle->article_title }}</a>
+						@else
+						<a href="/browse/article/{{ $savedArticle->saved_article_id }}">{{ $savedArticle->article_title }}</a>
+						@endif
+						</h6>
 					</div>
 					<div class="saved-item-actions">
 						<p class="saved-item-action"><a href="/browse/saved?delete&articleId={{ $savedArticle->saved_article_id }}&savedArticleId={{ $savedArticle->saved_id }}"><img src="/storage/images/icons/delete.png" alt="@lang('saved.delete-saved-article-alt')"></a></p>
