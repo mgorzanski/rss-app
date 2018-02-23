@@ -44,7 +44,7 @@ class LoadDataAjaxController extends Controller
             select('articles.id', 'articles.datetime', 'articles.title', 'articles.url', 'articles.body', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')->
             where('subscriptions.user_id', '=', Auth::id())->
             orderBy('datetime', 'desc')->skip($id)->take(10)->get();
-        } elseif($feed == 'search' && !empty($query)) {
+        } elseif($feed == 'search' && !empty($query) && $subscription_id === null) {
             $articles = Article::join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')->
             select('articles.id', 'articles.datetime', 'articles.title', 'articles.url', 'articles.body', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')->
             where([
@@ -53,6 +53,20 @@ class LoadDataAjaxController extends Controller
             ])->
             orWhere([
                 ['subscriptions.user_id', '=', Auth::id()],
+                ['articles.body', 'like', '%' . $query . '%']
+            ])->
+            orderBy('datetime', 'desc')->skip($id)->take(10)->get();
+        } elseif ($feed === 'search' && !empty($query) && !empty($subscription_id)) {
+            $articles = Article::join('subscriptions', 'articles.subscription_id', '=', 'subscriptions.id')->
+            select('articles.id', 'articles.datetime', 'articles.title', 'articles.url', 'articles.body', 'subscriptions.title as subscription_title', 'subscriptions.favicon as subscription_favicon')->
+            where([
+                ['subscriptions.user_id', '=', Auth::id()],
+                ['subscriptions.id', '=', $subscription_id],
+                ['articles.title', 'like', '%' . $query . '%']
+            ])->
+            orWhere([
+                ['subscriptions.user_id', '=', Auth::id()],
+                ['subscriptions.id', '=', $subscription_id],
                 ['articles.body', 'like', '%' . $query . '%']
             ])->
             orderBy('datetime', 'desc')->skip($id)->take(10)->get();

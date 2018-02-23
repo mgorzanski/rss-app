@@ -13,11 +13,18 @@ function getData() {
     let dataId = $('#load-articles').data('id');
     let dataBody;
     
-    if(window.location.href.indexOf("subscription") > -1) {
+    
+    if (window.location.href.indexOf("search") > -1) {
+        if (window.location.href.indexOf("subscription") <= -1) {
+            let query = getParameterByName('query');
+            dataBody = {id:dataId, feed:'search', subscription_id:null, query:query};
+        } else {
+            let query = getParameterByName('query');
+            let subscriptionId = getParameterByName('subscriptionId');
+            dataBody = {id:dataId, feed:'search', subscription_id:subscriptionId, query:query};
+        }
+    } else if(window.location.href.indexOf("subscription") > -1) {
         dataBody = {id:dataId, feed:'subscription', subscription_id:pageUrl[5], query:null};
-    } else if (window.location.href.indexOf("search") > -1) {
-        let query = getParameterByName('query');
-        dataBody = {id:dataId, feed:'search', subscription_id:null, query:query};
     } else {
         dataBody = {id:dataId, feed:'homepage', subscription_id:null, query:null};
     }

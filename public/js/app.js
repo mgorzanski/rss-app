@@ -10433,11 +10433,17 @@ function getData() {
     var dataId = $('#load-articles').data('id');
     var dataBody = void 0;
 
-    if (window.location.href.indexOf("subscription") > -1) {
+    if (window.location.href.indexOf("search") > -1) {
+        if (window.location.href.indexOf("subscription") <= -1) {
+            var query = getParameterByName('query');
+            dataBody = { id: dataId, feed: 'search', subscription_id: null, query: query };
+        } else {
+            var _query = getParameterByName('query');
+            var subscriptionId = getParameterByName('subscriptionId');
+            dataBody = { id: dataId, feed: 'search', subscription_id: subscriptionId, query: _query };
+        }
+    } else if (window.location.href.indexOf("subscription") > -1) {
         dataBody = { id: dataId, feed: 'subscription', subscription_id: pageUrl[5], query: null };
-    } else if (window.location.href.indexOf("search") > -1) {
-        var query = getParameterByName('query');
-        dataBody = { id: dataId, feed: 'search', subscription_id: null, query: query };
     } else {
         dataBody = { id: dataId, feed: 'homepage', subscription_id: null, query: null };
     }
