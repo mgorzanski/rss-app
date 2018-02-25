@@ -62,3 +62,21 @@
 .settings__form-row {
 	margin:5px 0 25px 0;
 }
+
+.header--fixed {
+	position: fixed;
+	z-index:2;
+	border-bottom:5px solid #1B1B1B;
+}
+
+.header--fixed .header-menu__text {
+	display:none;
+}
+
+.header--fixed .header-menu-link a {
+	line-height:48px;
+}
+
+.header--fixed .title {
+	font-size:1.65em;
+}

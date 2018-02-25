@@ -2,6 +2,8 @@
     .header {
         grid-template-areas: "heading hamburger-toggle"
                              "header-nav header-nav";
+        position: fixed;
+        z-index:2;
     }
 
     .main {

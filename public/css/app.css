@@ -254,9 +254,7 @@ html {
   grid-template-rows: auto;
   grid-template-columns: auto auto;
   border-bottom: 13px solid #1B1B1B;
-  position: fixed;
   width: 100%;
-  z-index: 2;
 }
 
 .heading {
@@ -280,7 +278,6 @@ html {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 3fr 10fr 3fr;
-  padding-top: 90px;
 }
 
 .center-wrapper {
@@ -902,9 +899,29 @@ html {
   margin: 5px 0 25px 0;
 }
 
+.header--fixed {
+  position: fixed;
+  z-index: 2;
+  border-bottom: 5px solid #1B1B1B;
+}
+
+.header--fixed .header-menu__text {
+  display: none;
+}
+
+.header--fixed .header-menu-link a {
+  line-height: 48px;
+}
+
+.header--fixed .title {
+  font-size: 1.65em;
+}
+
 @media only screen and (max-width: 980px) {
   .header {
     grid-template-areas: "heading hamburger-toggle" "header-nav header-nav";
+    position: fixed;
+    z-index: 2;
   }
 
   .main {
