@@ -58,7 +58,7 @@ class Settings
     public static function insertDefaultSettings($userId) {
         //Always open source of article
         Setting::insert(
-            ['name' => 'always_open_source_of_article', 'value' =>  0, 'user_id' => $userId]
+            ['name' => 'always_open_source_of_article', 'value' =>  'off', 'user_id' => $userId, 'type' => 'checkbox', 'available_values' => 'off|on']
         );
     }
 

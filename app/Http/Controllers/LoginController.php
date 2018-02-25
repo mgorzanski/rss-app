@@ -6,6 +6,7 @@ use App;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Settings;
 
 class LoginController extends Controller
 {
@@ -34,7 +35,8 @@ class LoginController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        User::insert(['name' => $name, 'email' => $email, 'password' => bcrypt($password), 'created_at' =>  date('Y-m-d H:i:s'), 'permissions' => 0, 'api_token' => str_random(60)]);
+        $newUserId = User::insertGetId(['name' => $name, 'email' => $email, 'password' => bcrypt($password), 'created_at' =>  date('Y-m-d H:i:s'), 'permissions' => 0, 'api_token' => str_random(60)]);
+        Settings::insertDefaultSettings($newUserId);
         return redirect('/login');
     }
 
