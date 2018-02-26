@@ -25,3 +25,5 @@ Route::get('/search', 'SearchController@query');
 Route::get('/browse/saved', 'SavedController@index');
 Route::get('/settings', 'SettingsController@index');
 Route::post('/settings', 'SettingsController@submit');
+Route::get('/user/profile', 'ProfileController@index');
+Route::put('/user/profile', 'ProfileController@update');

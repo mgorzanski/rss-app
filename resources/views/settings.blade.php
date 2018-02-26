@@ -7,10 +7,10 @@
 	<h3 class="box-title">@lang('settings.title')</h3>
 
 	<div class="box-content">
-		<form class="settings" action="/settings" method="post">
-            <div class="settings__form-row">
-                <label class="settings__label">@lang('settings.label-select-lang')</label>
-                <select class="settings__select" name="lang">
+		<form class="form" action="/settings" method="post">
+            <div class="form__form-row">
+                <label class="form__label">@lang('settings.label-select-lang')</label>
+                <select class="form__select" name="lang">
                     @if ($lang === 'en')
                     <option value="en" selected>english</option>
                     @else
@@ -29,8 +29,8 @@
             @endforeach
 
             {{ csrf_field() }}
-            <div class="settings__form-row">
-                <button type="submit" class="settings__submit">@lang('settings.form-submit-btn')</button>
+            <div class="form__form-row">
+                <button type="submit" class="form__submit">@lang('settings.form-submit-btn')</button>
             </div>
         </form>
 	</div>

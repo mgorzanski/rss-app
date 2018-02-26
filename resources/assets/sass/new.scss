@@ -1,12 +1,12 @@
-.settings-box {
+.settings-box, .profile-box {
     @extend .saved-list-box;
 }
 
-.settings {
+.form {
     margin:15px 0 0 0;
 }
 
-.settings__label {
+.form__label {
     font-family: 'Oxygen', sans-serif;
 	color:$primary-font-color;
 	font-size:1.1em;
@@ -14,19 +14,19 @@
     display:inline-block;
 }
 
-.settings__label--description {
-    @extend .settings__label;
+.form__label--description {
+    @extend .form__label;
     font-size:0.8em;
     display:block;
     margin:10px 0 0 0;
     color:#d1d1d1;
 }
 
-.settings__text, .settings__select, .settings__checkbox {
+.form__text, .form__select, .form__checkbox {
     margin:0 0 0 100px;
 }
 
-.settings__text {
+.form__text {
 	outline:none;
 	color:$box-font-color;
 	border:0;
@@ -36,7 +36,7 @@
 	position: relative;
 }
 
-.settings__select {
+.form__select {
     outline:none;
     padding:10px;
     background-color:#C9C9C9;
@@ -45,7 +45,7 @@
     position: relative;
 }
 
-.settings__submit {
+.form__submit {
 	box-sizing:border-box;
 	outline:none;
 	color:#333;
@@ -59,7 +59,7 @@
 	border-radius:2px;
 }
 
-.settings__form-row {
+.form__form-row {
 	margin:5px 0 25px 0;
 }
 

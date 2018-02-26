@@ -21,7 +21,7 @@ class Settings
             $row = new \stdClass();
             $data = [];
 
-            $view = 'settings.' . $setting['type'] . 'template';
+            $view = 'forms.' . $setting['type'] . 'template';
 
             $data['label'] = self::getNameTranslation($setting['name']);
             $data['name'] = $setting['name'];
