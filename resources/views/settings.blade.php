@@ -12,14 +12,14 @@
                 <label class="settings__label">@lang('settings.label-select-lang')</label>
                 <select class="settings__select" name="lang">
                     @if ($lang === 'en')
-                    <option value="english" selected>english</option>
+                    <option value="en" selected>english</option>
                     @else
-                    <option value="english">english</option>
+                    <option value="en">english</option>
                     @endif
                     @if ($lang === 'pl')
-                    <option value="polski" selected>polski</option>
+                    <option value="pl" selected>polski</option>
                     @else
-                    <option value="polski">polski</option>
+                    <option value="pl">polski</option>
                     @endif
                 </select>
             </div>
