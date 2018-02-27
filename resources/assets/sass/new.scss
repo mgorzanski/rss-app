@@ -80,3 +80,17 @@
 .header--fixed .title {
 	font-size:1.65em;
 }
+
+.day-divider {
+	border-radius:4px;
+	background-color:#057c29;
+	padding:20px;
+	margin-bottom:12px;
+}
+
+.day-divider__date {
+	margin-top:-4px;
+	font-size:1.4em;
+	font-family: 'Oxygen', sans-serif;
+	color:#fff;
+}

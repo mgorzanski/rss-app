@@ -39,12 +39,31 @@
 	<div class="box-content">
 		@php
 			$id = 0;
+			$lastArticleTimestamp;
 		@endphp
 
 		@foreach($articles as $article)
 
 		@php
+			$dt = new DateTime($article->datetime);
+			$dt->format('Y-m-d H:i:s');
+			$dt->setTime(0, 0, 0);
+			$article->timestamp = $dt->getTimestamp();
+			$article->day = new DateTime($article->datetime);
+			$article->day = $article->day->format('D');
+			$article->date = new DateTime($article->datetime);
+			$article->date = $article->date->format('Y-m-d');
+		@endphp
+
+		@if (!empty($lastArticleTimestamp) && $article->timestamp < $lastArticleTimestamp)
+			<section class="day-divider">
+				<h4 class="day-divider__date">{{ $article->day }}, {{ $article->date }}</h4>
+			</section>
+		@endif
+
+		@php
 			$id++;
+			$lastArticleTimestamp = $article->timestamp;
 		@endphp
 		<article class="feed-article" id="feed-item-{{ $id }}">
 			@if ($settings['always_open_source_of_article'] === 'on')
