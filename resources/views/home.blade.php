@@ -50,7 +50,7 @@
 			$dt->setTime(0, 0, 0);
 			$article->timestamp = $dt->getTimestamp();
 			$article->day = new DateTime($article->datetime);
-			$article->day = $article->day->format('D');
+			$article->day = $months[$article->day->format('D')];
 			$article->date = new DateTime($article->datetime);
 			$article->date = $article->date->format('Y-m-d');
 		@endphp

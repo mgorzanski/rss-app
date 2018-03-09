@@ -78,12 +78,42 @@ class LoadDataAjaxController extends Controller
   
         $output = '';
         if(!$articles->isEmpty()) {
+          $lastArticleTimestamp;
+          $months = array(
+            'Mon'   =>  Lang::get('date.mon'),
+            'Tue'   =>  Lang::get('date.tue'),
+            'Wed'   =>  Lang::get('date.wed'),
+            'Thu'   =>  Lang::get('date.thu'),
+            'Fri'   =>  Lang::get('date.fri'),
+            'Sat'   =>  Lang::get('date.sat'),
+            'Sun'   =>  Lang::get('date.sun')
+          );
+
           foreach($articles as $article) {
             $id++;
             $summary = DatabaseHelper::summarizeText($article->body, 200);
             $datetime = substr($article->datetime, 0, -3);
+
+            $dt = new \DateTime($article->datetime);
+            $dt->format('Y-m-d H:i:s');
+            $dt->setTime(0, 0, 0);
+            $article->timestamp = $dt->getTimestamp();
+            $article->day = new \DateTime($article->datetime);
+            $article->day = $months[$article->day->format('D')];
+            $article->date = new \DateTime($article->datetime);
+            $article->date = $article->date->format('Y-m-d');
+
+            if (!empty($lastArticleTimestamp) && $article->timestamp < $lastArticleTimestamp) {
+                $output .= '<section class="day-divider">
+				                <h4 class="day-divider__date">' . $article->day . ', ' . $article->date . '</h4>
+                            </section>';            
+            }
+
+            $lastArticleTimestamp = $article->timestamp;
+
             if (!empty($article->subscription_favicon)) {
                 $output .= '<article class="feed-article" id="feed-item-' . $id . '">';
+                
                 if ($settings['always_open_source_of_article'] === 'on') {
                     $output .= '<a href="' . $article->url . '">';
                 } else {
